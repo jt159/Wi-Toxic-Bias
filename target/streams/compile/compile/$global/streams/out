@@ -1,0 +1,16 @@
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\james\Desktop\Ratrapage IG5\WI\wi-session2\src\main\scala\Main.scala:43:12: fruitless type test: a value of type (org.apache.spark.ml.PipelineModel, org.apache.spark.sql.DataFrame) cannot also be a Array[T][0m
+[0m[[0m[33mwarn[0m] [0m[0m  val Array(model, testSet) = Trainer.trainModel(dataFile, spark)[0m
+[0m[[0m[33mwarn[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\james\Desktop\Ratrapage IG5\WI\wi-session2\src\main\scala\Main.scala:43:12: pattern type is incompatible with expected type;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Array[T][0m
+[0m[[0m[31merror[0m] [0m[0m required: (org.apache.spark.ml.PipelineModel, org.apache.spark.sql.DataFrame)[0m
+[0m[[0m[31merror[0m] [0m[0m    (which expands to)  (org.apache.spark.ml.PipelineModel, org.apache.spark.sql.Dataset[org.apache.spark.sql.Row])[0m
+[0m[[0m[31merror[0m] [0m[0m  val Array(model, testSet) = Trainer.trainModel(dataFile, spark)[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\james\Desktop\Ratrapage IG5\WI\wi-session2\src\main\scala\Main.scala:45:56: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : org.apache.spark.sql.SparkSession[0m
+[0m[[0m[31merror[0m] [0m[0m required: org.apache.spark.SparkContext[0m
+[0m[[0m[31merror[0m] [0m[0m  val result = Predicter.runPrediction(model, testSet, spark)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                       ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
