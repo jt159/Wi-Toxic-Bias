@@ -7,7 +7,9 @@ import org.apache.spark.ml.classification.{LogisticRegression, LogisticRegressio
 import org.apache.spark.ml.Pipeline
 import org.apache.spark.ml.PipelineModel
 
-
+/**
+  *  All the functions linking to the trainning part of the program
+  */
 object Trainer {
 
   val schemaStructure = StructType(
@@ -58,7 +60,12 @@ object Trainer {
       StructField("toxicity_annotator_count", DoubleType, true) :: Nil
   )
 
-
+  /**
+    *
+    * @param trainFilePath A string respresenting the path of the file to load
+    * @param sparkSession The spark session started at the beginning of the program
+    * @return A pipeline with the model and the last part of unused Dataframe of the training set to run the prediction
+    */
   def trainModel(trainFilePath: String, sparkSession : SparkSession): Tuple2[PipelineModel, DataFrame] = {
 
     //Loading the training set file
@@ -77,8 +84,11 @@ object Trainer {
     val indexPipeline = Indexer.processToIndexation(cleanedData)
     val trainingDataFormated = indexPipeline.fit(cleanedData).transform(cleanedData).select("target", "features")
 
+    trainingDataFormated.cache()
+
     //Split Data in two to use a part for training and a part for testing the model 80% to train cause little set used
     val Array(trainingDataSplitted, testDataSplitted) = trainingDataFormated.randomSplit(Array(0.8, 0.2))
+
 
 
 
@@ -86,10 +96,13 @@ object Trainer {
 
     //Running logistic regression
     val reg = new LogisticRegression()
-      .setMaxIter(10)
       .setLabelCol("target")
       .setFeaturesCol("features")
-      //.setRegParam(0.05)
+      .setAggregationDepth(10)
+      .setElasticNetParam(0.5)
+      .setFitIntercept(true)
+      .setMaxIter(10)
+      .setRegParam(0.05)
 
     val pip = new Pipeline().setStages(Array(
       reg

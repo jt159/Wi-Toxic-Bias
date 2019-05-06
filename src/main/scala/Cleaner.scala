@@ -6,8 +6,12 @@ import org.apache.spark.sql.functions.rand
 
 object Cleaner {
 
-
-
+  /**
+    *
+    * @param frameToClean The dataframe with all the data to select and clean
+    * @param sparkSession  The spark session started at the beginning of the program
+    * @return A cleaned Dataframe
+    */
   def cleanData(frameToClean: DataFrame, sparkSession : SparkSession): DataFrame = {
 
     //FIRST : Select the column I need to use

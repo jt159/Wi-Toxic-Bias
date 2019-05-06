@@ -6,6 +6,12 @@ import org.apache.spark.ml.feature.{VectorAssembler}
 
 object Indexer {
 
+
+  /**
+    *
+    * @param data Take the cleanned Dataframe
+    * @return a Pipeline cointaining the indexed variables
+    */
   def processToIndexation(data: DataFrame): Pipeline = {
 
 
