@@ -1,7 +1,7 @@
 # Wi-Toxic-Bias
 Wi Session 2 project 2019
 
-# This project has been run with intellij
+This project has been run with intellij
 
 # RUN THE PROJECT
 
